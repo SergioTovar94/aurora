@@ -2,39 +2,76 @@
 import Container from "./Container.astro";
 ---
 
-<footer id="contact" class="border-t border-zinc-800 py-10">
+<footer id="contact" class="border-t border-zinc-800 bg-[#010214]">
   <Container>
     <div
-      class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+      class="flex flex-col gap-10 py-12 md:flex-row md:items-start md:justify-between"
     >
-      <div>
+      <!-- Brand -->
+      <div class="max-w-sm">
         <div class="flex items-center gap-3">
           <img
             src="/horizontal.png"
             alt="Aurora Logo"
-            class="h-15 w-60 object-contain transition hover:opacity-110"
+            class="h-12 w-auto object-contain"
           />
         </div>
 
-        <p class="mt-2 text-zinc-500">
-          Desarrollo de software moderno y escalable.
+        <p class="mt-3 text-sm text-zinc-500">
+          Desarrollo de software moderno y escalable enfocado en experiencias
+          digitales limpias y eficientes.
         </p>
       </div>
 
-      <div class="flex gap-6 text-zinc-400">
-        <a href="mailto:correo@aurora.com" class="transition hover:text-white">
-          Email
+      <!-- Links -->
+      <div class="flex flex-col gap-3 text-sm text-zinc-400">
+        <a href="#services" class="hover:text-white transition">Servicios</a>
+        <a href="#tech" class="hover:text-white transition">Tecnologías</a>
+        <a href="#contact" class="hover:text-white transition">Contacto</a>
+      </div>
+
+      <!-- Contacto + redes -->
+      <div class="flex flex-col gap-4 text-sm text-zinc-400">
+        <a
+          href="mailto:sergiotovar9430@gmail.com"
+          class="hover:text-white transition"
+        >
+          Correo Aurora
         </a>
 
-        <a href="#" class="transition hover:text-white"> LinkedIn </a>
+        <!-- Redes -->
+        <div class="flex items-center gap-4 text-zinc-400">
+          <a
+            href="https://www.instagram.com/aurorawebst/"
+            class="hover:text-white transition"
+            aria-label="Instagram"
+          >
+            Instagram
+          </a>
 
-        <a href="#" class="transition hover:text-white"> GitHub </a>
+          <a
+            href="https://www.linkedin.com/company/aurorawebst/?viewAsMember=true"
+            class="hover:text-white transition"
+            aria-label="LinkedIn"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="https://www.facebook.com/aurorawebst/"
+            class="hover:text-white transition"
+            aria-label="Facebook"
+          >
+            Facebook
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="mt-10 border-t border-zinc-800 pt-6">
-      <p class="text-center text-sm text-zinc-500">
-        Diseño y desarrollo por Aurora Web Studio
+    <!-- Bottom -->
+    <div class="border-t border-zinc-800 py-6">
+      <p class="text-center text-xs text-zinc-600">
+        © {new Date().getFullYear()} Aurora Web Studio. Todos los derechos reservados.
       </p>
     </div>
   </Container>

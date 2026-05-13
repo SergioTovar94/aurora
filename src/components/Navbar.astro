@@ -3,25 +3,165 @@ import Container from "./Container.astro";
 ---
 
 <nav
-  class="fixed top-0 z-50 w-full border-b border-zinc-800/80 bg-[#010214] backdrop-blur"
+  class="fixed top-0 z-50 w-full border-b border-zinc-800/80 bg-[#010214]/90 backdrop-blur"
 >
   <Container>
+    <!-- HEADER -->
     <div class="flex items-center justify-between py-4">
+      <!-- Logo -->
       <a href="/" class="flex items-center gap-3">
         <img
           src="/horizontal.png"
           alt="Aurora Logo"
-          class="h-15 w-60 object-contain transition hover:opacity-110"
+          class="h-12 w-auto object-contain transition hover:opacity-90"
         />
       </a>
 
-      <div class="flex gap-6 text-sm text-zinc-300">
-        <a href="#services" class="transition hover:text-white"> Servicios </a>
+      <!-- Desktop -->
+      <div class="hidden md:flex items-center gap-8">
+        <!-- Links -->
+        <div class="flex gap-6 text-sm text-zinc-300">
+          <a href="#services" class="hover:text-white transition">Servicios</a>
+          <a href="#tech" class="hover:text-white transition">Tecnologías</a>
+          <a href="#contact" class="hover:text-white transition">Contacto</a>
+        </div>
 
-        <a href="#tech" class="transition hover:text-white"> Tecnologías </a>
+        <!-- Redes -->
+        <div class="flex items-center gap-3 text-zinc-400">
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/aurorawebst/"
+            class="hover:text-white transition"
+            aria-label="Instagram"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37a4 4 0 1 1-7.9 1.26 4 4 0 0 1 7.9-1.26z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
 
-        <a href="#contact" class="transition hover:text-white"> Contacto </a>
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/company/aurorawebst/?viewAsMember=true"
+            class="hover:text-white transition"
+            aria-label="LinkedIn"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a
+            href="https://www.facebook.com/aurorawebst/"
+            class="hover:text-white transition"
+            aria-label="Facebook"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Botón móvil -->
+      <button
+        id="menuBtn"
+        class="md:hidden text-zinc-300 hover:text-white transition"
+        aria-label="Abrir menú"
+      >
+        ☰
+      </button>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div
+      id="mobileMenu"
+      class="md:hidden hidden flex-col gap-4 pb-6 text-sm text-zinc-300"
+    >
+      <!-- Links -->
+      <a
+        href="#services"
+        class="block px-3 py-3 rounded-lg hover:bg-zinc-900 hover:text-white transition"
+      >
+        Servicios
+      </a>
+
+      <a
+        href="#tech"
+        class="block px-3 py-3 rounded-lg hover:bg-zinc-900 hover:text-white transition"
+      >
+        Tecnologías
+      </a>
+
+      <a
+        href="#contact"
+        class="block px-3 py-3 rounded-lg hover:bg-zinc-900 hover:text-white transition"
+      >
+        Contacto
+      </a>
+
+      <!-- Redes mobile -->
+      <div class="flex items-center gap-4 px-3 pt-2 text-zinc-400">
+        <a
+          href="https://www.instagram.com/aurorawebst/"
+          class="hover:text-white transition"
+          aria-label="Instagram"
+        >
+          IG
+        </a>
+
+        <a
+          href="https://www.linkedin.com/company/aurorawebst/?viewAsMember=true"
+          class="hover:text-white transition"
+          aria-label="LinkedIn"
+        >
+          IN
+        </a>
+
+        <a
+          href="https://www.facebook.com/aurorawebst/"
+          class="hover:text-white transition"
+          aria-label="Facebook"
+        >
+          FB
+        </a>
       </div>
     </div>
   </Container>
+
+  <!-- Toggle script -->
+  <script is:inline>
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn?.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
 </nav>

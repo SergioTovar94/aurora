@@ -1,0 +1,167 @@
+---
+import "intl-tel-input/styles";
+---
+
+<style is:global>
+  .iti__country-list {
+    background-color: #18181b !important;
+    color: white !important;
+    border: 1px solid #27272a;
+  }
+  .iti__search-input {
+    background-color: #18181b !important; /* zinc-900 */
+    color: white !important;
+    border: 1px solid #27272a !important;
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #18181b inset !important;
+    -webkit-text-fill-color: white !important;
+    caret-color: white;
+  }
+
+  .iti__country:hover {
+    background-color: #27272a !important;
+  }
+
+  .iti__country-name {
+    color: white !important;
+  }
+
+  .iti__dial-code {
+    color: #a1a1aa !important;
+  }
+</style>
+<section class="min-h-screen pt-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div
+      class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:items-center"
+    >
+      <!-- Texto -->
+      <div class="max-w-2xl flex-1">
+        <p class="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-400">
+          Cuéntanos qué necesitas y te contactaremos para proponerte la mejor
+          solución para tu negocio.
+        </p>
+
+        <h1 class="max-w-3xl text-5xl font-black leading-tight md:text-7xl">
+          Hablemos de tu proyecto
+        </h1>
+      </div>
+
+      <!-- Formulario -->
+      <div class="w-full max-w-md flex-1">
+        <form
+          id="contact-form"
+          class="flex flex-col gap-4 rounded-3xl border border-zinc-800 backdrop-blur p-8"
+        >
+          <input
+            required
+            type="text"
+            name="nombre"
+            placeholder="Tu nombre"
+            class="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+          />
+
+          <input
+            required
+            type="email"
+            name="email"
+            placeholder="Correo electrónico"
+            class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+          />
+
+          <textarea
+            name="mensaje"
+            placeholder="Cuéntanos sobre tu proyecto"
+            rows="5"
+            class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+          ></textarea>
+          <div>
+            <input
+              id="telefono"
+              type="tel"
+              name="telefono"
+              placeholder="Número de teléfono"
+              class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+            />
+          </div>
+          <div class="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="privacy"
+              name="privacy"
+              required
+              class="mt-1 h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-cyan-400 focus:ring-cyan-400"
+            />
+
+            <label for="privacy" class="text-sm leading-relaxed text-zinc-400">
+              Acepto la
+              <a
+                href="/politica-de-privacidad"
+                class="text-cyan-400 transition hover:text-cyan-300"
+              >
+                política de tratamiento de datos personales
+              </a>
+              .
+            </label>
+          </div>
+
+          <button
+            class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:bg-cyan-300"
+          >
+            Enviar solicitud
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import intlTelInput from "intl-tel-input";
+
+  const input = document.querySelector("#telefono");
+
+  if (input instanceof HTMLInputElement) {
+    intlTelInput(input, {
+      initialCountry: "co",
+      countryOrder: ["co", "us", "mx", "es"],
+      separateDialCode: true,
+    });
+  }
+</script>
+<script>
+  const form = document.querySelector("#contact-form");
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const iti = window.iti;
+
+      const data = {
+        nombre: formData.get("nombre"),
+        email: formData.get("email"),
+        mensaje: formData.get("mensaje"),
+        telefono: iti ? iti.getNumber() : formData.get("telefono"),
+      };
+
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (result.ok) {
+        alert("Mensaje enviado");
+        form.reset();
+        window.iti?.setCountry("co");
+      } else {
+        alert("Error al enviar");
+      }
+    });
+  }
+</script>
