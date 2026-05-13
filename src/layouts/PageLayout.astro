@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+const { title } = Astro.props;
+
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body class="text-zinc-100 antialiased">
+    <!-- NAVBAR oscuro -->
+    <div class="bg-[#010214]">
+      <Navbar />
+    </div>
+
+    <!-- HEADER oscuro -->
+    <header class="bg-[#010214] pt-28 pb-20 px-6">
+      <div class="max-w-4xl mx-auto text-center space-y-4">
+        <slot name="header" />
+      </div>
+    </header>
+
+    <!-- CONTENIDO CLARO -->
+    <main class="bg-white text-zinc-900 py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <slot />
+      </div>
+    </main>
+
+    <!-- FOOTER oscuro -->
+    <div class="bg-[#010214]">
+      <Footer />
+    </div>
+  </body>
+</html>

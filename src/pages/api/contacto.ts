@@ -7,7 +7,27 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
 
-    const { nombre, email, mensaje, telefono } = data;
+    const { nombre, email, mensaje, telefono, captchaToken  } = data;
+
+    const verifyCaptcha = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `secret=${import.meta.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+      }
+    );
+
+    const captchaResult = await verifyCaptcha.json();
+
+    if (!captchaResult.success) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "captcha_failed" }),
+        { status: 400 }
+      );
+    }
 
     await resend.emails.send({
       from: "Contacto <onboarding@resend.dev>",

@@ -31,7 +31,8 @@ import "intl-tel-input/styles";
     color: #a1a1aa !important;
   }
 </style>
-<section class="min-h-screen pt-24">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<section id="contact" class="min-h-screen pt-24">
   <div class="mx-auto max-w-6xl px-6">
     <div
       class="flex flex-col items-center justify-center gap-16 lg:flex-row lg:items-center"
@@ -85,6 +86,11 @@ import "intl-tel-input/styles";
               class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
             />
           </div>
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LctlOgsAAAAAI4B49yDpxE89O2e4kGkd__Rlloe"
+          >
+          </div>
           <div class="flex items-start gap-3">
             <input
               type="checkbox"
@@ -97,7 +103,7 @@ import "intl-tel-input/styles";
             <label for="privacy" class="text-sm leading-relaxed text-zinc-400">
               Acepto la
               <a
-                href="/politica-de-privacidad"
+                href="/privacy-policy"
                 class="text-cyan-400 transition hover:text-cyan-300"
               >
                 política de tratamiento de datos personales
@@ -140,11 +146,19 @@ import "intl-tel-input/styles";
 
       const iti = window.iti;
 
+      const captchaToken = formData.get("g-recaptcha-response");
+
+      if (!captchaToken) {
+        alert("Por favor confirma que no eres un robot");
+        return;
+      }
+
       const data = {
         nombre: formData.get("nombre"),
         email: formData.get("email"),
         mensaje: formData.get("mensaje"),
         telefono: iti ? iti.getNumber() : formData.get("telefono"),
+        captchaToken: formData.get("g-recaptcha-response"),
       };
 
       const res = await fetch("/api/contacto", {
