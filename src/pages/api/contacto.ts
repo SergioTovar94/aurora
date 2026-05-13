@@ -9,6 +9,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { nombre, email, mensaje, telefono, captchaToken  } = data;
 
+    if (!captchaToken) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "missing_captcha" }),
+        { status: 400 }
+      );
+    }
+
     const verifyCaptcha = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
       {
@@ -16,7 +23,10 @@ export const POST: APIRoute = async ({ request }) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `secret=${import.meta.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+        body: new URLSearchParams({
+          secret: import.meta.env.RECAPTCHA_SECRET,
+          response: captchaToken,
+        })
       }
     );
 
