@@ -1,0 +1,30 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+
+const techs = [
+  "Java",
+  "Spring Boot",
+  "PostgreSQL",
+  "Astro",
+  "TypeScript",
+  "Docker",
+  "Git",
+  "Tailwind CSS",
+];
+---
+
+<section id="tech" class="py-32">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionTitle title="Tecnologías" subtitle="Stack" />
+
+    <div class="flex flex-wrap gap-4">
+      {
+        techs.map((tech) => (
+          <div class="rounded-full border border-zinc-700 px-5 py-3 text-sm text-zinc-300">
+            {tech}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

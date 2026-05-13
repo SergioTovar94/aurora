@@ -1,0 +1,41 @@
+---
+import Container from "./Container.astro";
+---
+
+<footer id="contact" class="border-t border-zinc-800 py-10">
+  <Container>
+    <div
+      class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <div class="flex items-center gap-3">
+          <img
+            src="/horizontal.png"
+            alt="Aurora Logo"
+            class="h-15 w-60 object-contain transition hover:opacity-110"
+          />
+        </div>
+
+        <p class="mt-2 text-zinc-500">
+          Desarrollo de software moderno y escalable.
+        </p>
+      </div>
+
+      <div class="flex gap-6 text-zinc-400">
+        <a href="mailto:correo@aurora.com" class="transition hover:text-white">
+          Email
+        </a>
+
+        <a href="#" class="transition hover:text-white"> LinkedIn </a>
+
+        <a href="#" class="transition hover:text-white"> GitHub </a>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-zinc-800 pt-6">
+      <p class="text-center text-sm text-zinc-500">
+        Diseño y desarrollo por Aurora Web Studio
+      </p>
+    </div>
+  </Container>
+</footer>

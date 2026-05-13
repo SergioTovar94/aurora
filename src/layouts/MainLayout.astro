@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Aurora desarrolla software moderno, rápido y escalable."
+    />
+  </head>
+
+  <body class="bg-[#010214] text-zinc-100 antialiased">
+    <div
+      class="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.15),transparent_40%)]"
+    >
+    </div>
+    <slot />
+  </body>
+</html>

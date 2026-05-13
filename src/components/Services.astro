@@ -1,0 +1,47 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+import Container from "./Container.astro";
+
+const services = [
+  {
+    title: "Desarrollo Web",
+    description:
+      "Sitios y plataformas modernas enfocadas en velocidad, SEO y experiencia de usuario.",
+  },
+
+  {
+    title: "APIs REST",
+    description:
+      "Backend robusto y escalable usando arquitecturas limpias y buenas prácticas.",
+  },
+
+  {
+    title: "Automatización",
+    description: "Soluciones para optimizar procesos y reducir trabajo manual.",
+  },
+
+  {
+    title: "Integraciones",
+    description:
+      "Conexión entre sistemas, servicios externos y plataformas empresariales.",
+  },
+];
+---
+
+<section id="services" class="py-32">
+  <Container>
+    <SectionTitle title="Servicios" subtitle="Lo que hago" />
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        services.map((service) => (
+          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 transition hover:border-zinc-600">
+            <h3 class="mb-4 text-2xl font-bold">{service.title}</h3>
+
+            <p class="leading-relaxed text-zinc-400">{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

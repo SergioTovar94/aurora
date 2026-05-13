@@ -1,0 +1,27 @@
+---
+import Container from "./Container.astro";
+---
+
+<nav
+  class="fixed top-0 z-50 w-full border-b border-zinc-800/80 bg-[#010214] backdrop-blur"
+>
+  <Container>
+    <div class="flex items-center justify-between py-4">
+      <a href="/" class="flex items-center gap-3">
+        <img
+          src="/horizontal.png"
+          alt="Aurora Logo"
+          class="h-15 w-60 object-contain transition hover:opacity-110"
+        />
+      </a>
+
+      <div class="flex gap-6 text-sm text-zinc-300">
+        <a href="#services" class="transition hover:text-white"> Servicios </a>
+
+        <a href="#tech" class="transition hover:text-white"> Tecnologías </a>
+
+        <a href="#contact" class="transition hover:text-white"> Contacto </a>
+      </div>
+    </div>
+  </Container>
+</nav>
