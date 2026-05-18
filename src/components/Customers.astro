@@ -1,0 +1,59 @@
+---
+import Container from "./Container.astro";
+import SectionTitle from "./SectionTitle.astro";
+---
+
+<section id="customers" class="py-32 overflow-hidden">
+  <Container>
+    <SectionTitle
+      title="Proyectos y colaboraciones"
+      subtitle="Organizaciones que han confiado en nuestro trabajo"
+    />
+
+    <div class="logos">
+      <div class="logos-slide">
+        <img src="/LogoDC.webp" alt="Logo" />
+        <img src="/LogoLiga.webp" alt="Logo" />
+        <img src="/OCE.webp" alt="Logo" />
+        <img src="/LogoYRET.webp" alt="Logo" />
+        <img src="/LogoDC.webp" alt="Logo" />
+        <img src="/LogoLiga.webp" alt="Logo" />
+        <img src="/OCE.webp" alt="Logo" />
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .logos {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+  }
+
+  .logos-slide {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: max-content;
+
+    animation: slide 15s linear infinite;
+  }
+
+  .logos-slide img {
+    height: 80px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
