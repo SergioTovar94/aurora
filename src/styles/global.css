@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./effects/stars.css";
+@import "./components/whatsapp.css";
 html {
   scroll-behavior: smooth;
 }
@@ -8,36 +10,4 @@ html {
   color: black;
 }
 
-  .whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 999px;
-    background: #25D366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 28px;
-  }
 
-  .whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-  }
-
-  .whatsapp-btn img {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .whatsapp-btn img:hover {
-    transform: scale(1.1);
-  }

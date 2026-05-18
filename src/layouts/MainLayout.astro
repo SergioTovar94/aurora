@@ -16,6 +16,17 @@ const { title } = Astro.props;
   </head>
 
   <body class="bg-[#010214] text-zinc-100 antialiased">
+    <div class="aurora-stars" id="stars-container"></div>
+
+    <div class="aurora">
+      <div class="aurora-base"></div>
+      <div class="aurora-depth"></div>
+      <div class="aurora-b1"></div>
+      <div class="aurora-b2"></div>
+      <div class="aurora-b3"></div>
+      <div class="aurora-b4"></div>
+      <div class="aurora-b5"></div>
+    </div>
     <div
       class="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.15),transparent_40%)]"
     >
@@ -30,5 +41,18 @@ const { title } = Astro.props;
       </a>
     </div>
     <slot />
+    <script is:inline>
+      const container = document.getElementById("stars-container");
+      const STAR_COUNT = 180;
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const star = document.createElement("span");
+        const isBig = Math.random() < 0.03;
+        star.className = isBig ? "star big" : "star";
+        star.style.setProperty("--x", Math.random() * 100 + "%");
+        star.style.setProperty("--y", Math.random() * 100 + "%");
+        star.style.setProperty("--t", 2 + Math.random() * 5 + "s");
+        container.appendChild(star);
+      }
+    </script>
   </body>
 </html>

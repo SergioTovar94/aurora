@@ -1,0 +1,29 @@
+/* =========================
+   WHATSAPP BUTTON
+========================= */
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.whatsapp-btn img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-btn img:hover {
+  transform: scale(1.1);
+}
+
+/* CAPA BASE */
+.aurora-stars {
+  position: fixed;   /* era absolute */
+  inset: 0;
+  z-index: -1;       /* detrás de todo */
+  pointer-events: none;
+}

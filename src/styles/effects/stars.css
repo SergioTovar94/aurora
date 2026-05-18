@@ -1,0 +1,303 @@
+.aurora-stars::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  width: 1px;
+  height: 1px;
+  background: transparent;
+
+  box-shadow:
+    10vw 20vh rgba(255,255,255,0.8),
+    15vw 80vh rgba(255,255,255,0.6),
+    22vw 40vh rgba(255,255,255,0.7),
+    30vw 10vh rgba(255,255,255,0.5),
+    38vw 65vh rgba(255,255,255,0.6),
+    44vw 30vh rgba(255,255,255,0.4),
+    52vw 70vh rgba(255,255,255,0.7),
+    60vw 20vh rgba(255,255,255,0.5),
+    68vw 55vh rgba(255,255,255,0.6),
+    75vw 35vh rgba(255,255,255,0.7),
+    82vw 75vh rgba(255,255,255,0.5),
+    90vw 25vh rgba(255,255,255,0.6),
+
+    12vw 15vh rgba(255,255,255,0.4),
+    18vw 55vh rgba(255,255,255,0.3),
+    27vw 75vh rgba(255,255,255,0.35),
+    36vw 25vh rgba(255,255,255,0.3),
+    48vw 85vh rgba(255,255,255,0.35),
+    58vw 45vh rgba(255,255,255,0.3),
+    66vw 15vh rgba(255,255,255,0.35),
+    78vw 60vh rgba(255,255,255,0.3),
+    88vw 80vh rgba(255,255,255,0.35);
+
+  animation: slowDrift 25s ease-in-out infinite alternate;
+}
+
+/* movimiento suave del cielo */
+@keyframes slowDrift {
+  0% {
+    transform: scale(1) translateY(0px);
+  }
+  100% {
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+
+/* ESTRELLAS DINÁMICAS */
+.star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+  border-radius: 50%;
+
+  left: var(--x);
+  top: var(--y);
+
+  opacity: 0.25;
+  animation: twinkle var(--t) infinite ease-in-out;
+}
+
+/* pocas estrellas más visibles */
+.star.big {
+  width: 2px;
+  height: 2px;
+  opacity: 0.6;
+  box-shadow: 0 0 3px rgba(255,255,255,0.4);
+}
+
+/* parpadeo */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.4);
+  }
+}
+
+/* variación: no todas titilan igual */
+.star:nth-child(3n) {
+  animation-duration: 2s;
+}
+
+.star:nth-child(5n) {
+  animation-duration: 2s;
+  opacity: 0.15;
+}
+/* =========================
+   AURORA — haces verticales
+========================= */
+
+.aurora {
+  position: absolute;  /* era fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.aurora-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, #010214 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Resplandor base del horizonte */
+.aurora-base {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top,
+    rgba(20, 255, 120, 0.18) 0%,
+    rgba(0,  220, 180, 0.08) 50%,
+    transparent 100%
+  );
+  filter: blur(8px);
+  animation: baseGlowPulse 4s ease-in-out infinite;
+}
+
+/* Haz difuso de fondo (profundidad) */
+.aurora-depth {
+  position: absolute;
+  bottom: 0; left: 30%;
+  width: 40%; height: 65%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(20, 200, 120, 0.35)  0%,
+    rgba(0,  180, 200, 0.18) 40%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  animation: beam5 7s ease-in-out infinite;
+}
+
+/* Haz 1 — grande izquierda */
+.aurora-b1 {
+  position: absolute;
+  bottom: 0; left: 8%;
+  width: 22%; height: 85%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(30,  255, 100, 0.95)  0%,
+    rgba(20,  255, 120, 0.75) 15%,
+    rgba(10,  230, 180, 0.50) 35%,
+    rgba(0,   200, 220, 0.25) 60%,
+    rgba(0,   180, 255, 0.08) 80%,
+    transparent 100%
+  );
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  transform-origin: center bottom;
+  animation: beam1 5s ease-in-out infinite;
+}
+
+/* Haz 2 — fino brillante, junto al 1 */
+.aurora-b2 {
+  position: absolute;
+  bottom: 0; left: 18%;
+  width: 10%; height: 75%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(180, 255,  80, 1.00)  0%,
+    rgba(60,  255, 120, 0.85) 20%,
+    rgba(20,  230, 200, 0.50) 50%,
+    rgba(0,   200, 255, 0.15) 75%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  transform-origin: center bottom;
+  animation: beam2 5s ease-in-out infinite;
+}
+
+/* Haz 3 — grande derecha */
+.aurora-b3 {
+  position: absolute;
+  bottom: 0; right: 4%;
+  width: 24%; height: 90%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(30,  255, 100, 0.90)  0%,
+    rgba(20,  255, 130, 0.70) 18%,
+    rgba(0,   220, 200, 0.40) 40%,
+    rgba(0,   180, 255, 0.15) 65%,
+    transparent 100%
+  );
+  filter: blur(22px);
+  mix-blend-mode: screen;
+  transform-origin: center bottom;
+  animation: beam3 6s ease-in-out infinite;
+}
+
+/* Haz 4 — fino cian, derecha */
+.aurora-b4 {
+  position: absolute;
+  bottom: 0; right: 14%;
+  width: 8%; height: 68%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(100, 255, 180, 0.90)  0%,
+    rgba(0,   230, 220, 0.65) 25%,
+    rgba(0,   200, 255, 0.30) 55%,
+    transparent 100%
+  );
+  filter: blur(8px);
+  mix-blend-mode: screen;
+  transform-origin: center bottom;
+  animation: beam4 6s ease-in-out infinite;
+}
+
+/* Haz 5 — fino centro */
+.aurora-b5 {
+  position: absolute;
+  bottom: 0; left: 38%;
+  width: 7%; height: 72%;
+  border-radius: 50% 50% 0 0 / 8% 8% 0 0;
+  background: linear-gradient(to top,
+    rgba(80,  255, 140, 0.85)  0%,
+    rgba(20,  230, 200, 0.55) 30%,
+    rgba(0,   200, 255, 0.20) 60%,
+    transparent 100%
+  );
+  filter: blur(9px);
+  mix-blend-mode: screen;
+  transform-origin: center bottom;
+  animation: beam6 4.5s ease-in-out infinite;
+}
+
+/* ── Keyframes ── */
+
+@keyframes baseGlowPulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1.0; }
+}
+
+@keyframes beam1 {
+  0%   { transform: translateX(0%)  scaleX(1.00) scaleY(1.00) rotate(0deg);    opacity: 0.85; }
+  25%  { transform: translateX(6%)  scaleX(1.10) scaleY(1.05) rotate(1.5deg);  opacity: 1.00; }
+  50%  { transform: translateX(12%) scaleX(0.92) scaleY(0.95) rotate(-1deg);   opacity: 0.80; }
+  75%  { transform: translateX(4%)  scaleX(1.06) scaleY(1.02) rotate(2deg);    opacity: 0.95; }
+  100% { transform: translateX(0%)  scaleX(1.00) scaleY(1.00) rotate(0deg);    opacity: 0.85; }
+}
+
+@keyframes beam2 {
+  0%   { transform: translateX(0%)  scaleX(1.0) rotate(0deg);    opacity: 0.90; }
+  20%  { transform: translateX(10%) scaleX(1.3) rotate(2deg);    opacity: 1.00; }
+  45%  { transform: translateX(18%) scaleX(0.8) rotate(-1.5deg); opacity: 0.75; }
+  70%  { transform: translateX(8%)  scaleX(1.2) rotate(1deg);    opacity: 0.95; }
+  100% { transform: translateX(0%)  scaleX(1.0) rotate(0deg);    opacity: 0.90; }
+}
+
+@keyframes beam3 {
+  0%   { transform: translateX(0%)   scaleX(1.00) scaleY(1.00) rotate(0deg);   opacity: 0.80; }
+  30%  { transform: translateX(-8%)  scaleX(1.08) scaleY(1.06) rotate(-2deg);  opacity: 1.00; }
+  55%  { transform: translateX(-14%) scaleX(0.90) scaleY(0.93) rotate(1.5deg); opacity: 0.75; }
+  80%  { transform: translateX(-5%)  scaleX(1.04) scaleY(1.02) rotate(-1deg);  opacity: 0.90; }
+  100% { transform: translateX(0%)   scaleX(1.00) scaleY(1.00) rotate(0deg);   opacity: 0.80; }
+}
+
+@keyframes beam4 {
+  0%   { transform: translateX(0%)   scaleX(1.0) rotate(0deg);  opacity: 0.85; }
+  35%  { transform: translateX(-12%) scaleX(1.4) rotate(-2deg); opacity: 1.00; }
+  65%  { transform: translateX(-6%)  scaleX(0.9) rotate(1deg);  opacity: 0.70; }
+  100% { transform: translateX(0%)   scaleX(1.0) rotate(0deg);  opacity: 0.85; }
+}
+
+@keyframes beam5 {
+  0%   { transform: translateX(0%)  scaleX(1.00); opacity: 0.50; }
+  40%  { transform: translateX(-8%) scaleX(1.12); opacity: 0.75; }
+  75%  { transform: translateX(6%)  scaleX(0.90); opacity: 0.55; }
+  100% { transform: translateX(0%)  scaleX(1.00); opacity: 0.50; }
+}
+
+@keyframes beam6 {
+  0%   { transform: translateX(0%)   scaleX(1.0) rotate(0deg);  opacity: 0.80; }
+  25%  { transform: translateX(-10%) scaleX(1.5) rotate(-3deg); opacity: 1.00; }
+  50%  { transform: translateX(-18%) scaleX(0.7) rotate(2deg);  opacity: 0.65; }
+  75%  { transform: translateX(-8%)  scaleX(1.3) rotate(-1deg); opacity: 0.90; }
+  100% { transform: translateX(0%)   scaleX(1.0) rotate(0deg);  opacity: 0.80; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-b1, .aurora-b2, .aurora-b3, .aurora-b4, .aurora-b5,
+  .aurora-depth, .aurora-stars::before, .star {
+    animation: none !important;
+    transform: none !important;
+  }
+}
