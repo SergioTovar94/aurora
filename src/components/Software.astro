@@ -1,0 +1,105 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+import Container from "./Container.astro";
+
+const services = [
+  {
+    title: "Inteligencia Artificial",
+    description:
+      "Automatizamos procesos y desarrollamos soluciones con IA para reducir trabajo manual y mejorar la eficiencia.",
+    href: "/develop",
+
+    features: [
+      "Automatización de procesos con IA",
+      "Modelos de machine learning",
+      "Chatbots inteligentes",
+      "Análisis predictivo",
+      "Integración con APIs de IA",
+      "Optimización de tareas repetitivas",
+    ],
+
+    primaryCta: {
+      label: "Quiero este servicio",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20una%20soluci%C3%B3n%20de%20inteligencia%20artificial%20para%20mi%20empresa.",
+    },
+  },
+  {
+    title: "Aplicaciones",
+    description:
+      "Desarrollamos aplicaciones multiplataforma adaptadas a las necesidades de tu empresa y tus usuarios.",
+    href: "/develop",
+
+    features: [
+      "Aplicaciones móviles (Android / iOS)",
+      "Aplicaciones de escritorio",
+      "Interfaces modernas y rápidas",
+      "Integración con backend y APIs",
+      "Sistemas escalables",
+      "Arquitectura personalizada según el proyecto",
+    ],
+
+    primaryCta: {
+      label: "Quiero este servicio",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20cotizar%20una%20aplicaci%C3%B3n%20m%C3%B3vil%20o%20de%20escritorio%20para%20mi%20empresa.",
+    },
+  },
+  {
+    title: "Análisis de Datos",
+    description:
+      "Transformamos datos en información útil para ayudarte a tomar decisiones más inteligentes y entender mejor tu negocio.",
+    href: "/develop",
+
+    features: [
+      "Procesamiento y limpieza de datos",
+      "Dashboards interactivos",
+      "Automatización de reportes",
+      "Análisis de KPIs",
+      "Modelos de visualización",
+      "Integración con múltiples fuentes de datos",
+    ],
+
+    primaryCta: {
+      label: "Quiero este servicio",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20cotizar%20un%20servicio%20de%20an%C3%A1lisis%20de%20datos%20para%20mi%20empresa.",
+    },
+  },
+];
+---
+
+<section id="services" class="px-6 py-32 xl:px-12">
+  <Container>
+    <SectionTitle
+      title="Desarrollo web"
+      subtitle="Lo que podemos hacer por ti"
+    />
+
+    <div class="grid gap-12 md:grid-cols-2 xl:grid-cols-3">
+      {
+        services.map((service) => (
+          <article class="relative z-10 flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 text-center transition hover:-translate-y-1 hover:border-zinc-600">
+            <h3 class="mb-4 text-2xl font-bold">{service.title}</h3>
+            <p class="mb-5 leading-relaxed text-zinc-400">
+              {service.description}
+            </p>
+
+            <ul class="mb-6 flex-1 space-y-1.5 text-sm text-zinc-300">
+              {service.features.map((feature) => (
+                <li> {feature}</li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex flex-col gap-3">
+              <a
+                href={service.primaryCta.href}
+                class="rounded-xl bg-white px-4 py-3 text-center font-medium text-black transition hover:opacity-90"
+              >
+                {service.primaryCta.label}
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>;
+
