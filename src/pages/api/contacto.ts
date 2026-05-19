@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
     const captchaResult = await verifyCaptcha.json();
-    console.log("CAPTCHA RESULT:", captchaResult);
+
     if (!captchaResult.success) {
       return new Response(
         JSON.stringify({ ok: false, error: "captcha_failed" }),
@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     await resend.emails.send({
   from: "Aurora Web <onboarding@resend.dev>",
-  to: "contacto@aurora-web-studio.com",
+  to: "sergiotovar9430@gmail.com",
   subject: "Nuevo lead desde la web",
   html: `
     <div style="font-family: Arial, sans-serif; background:#f4f7fb; padding:40px;">
@@ -154,14 +154,9 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (err) {
-  console.error(err);
-
-  return new Response(
-    JSON.stringify({
-      ok: false,
-      error: String(err),
-    }),
-    { status: 500 }
-  );
-}
+    return new Response(
+      JSON.stringify({ ok: false }),
+      { status: 500 }
+    );
+  }
 }
