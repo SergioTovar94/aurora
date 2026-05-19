@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     await resend.emails.send({
   from: "Aurora Web <onboarding@resend.dev>",
-  to: "sergiotovar9430@gmail.com",
+  to: "contacto@aurora-web-service.com",
   subject: "Nuevo lead desde la web",
   html: `
     <div style="font-family: Arial, sans-serif; background:#f4f7fb; padding:40px;">
