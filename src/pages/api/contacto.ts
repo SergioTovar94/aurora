@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
     const captchaResult = await verifyCaptcha.json();
-
+    console.log("CAPTCHA RESULT:", captchaResult);
     if (!captchaResult.success) {
       return new Response(
         JSON.stringify({ ok: false, error: "captcha_failed" }),
@@ -154,9 +154,14 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (err) {
-    return new Response(
-      JSON.stringify({ ok: false }),
-      { status: 500 }
-    );
-  }
+  console.error(err);
+
+  return new Response(
+    JSON.stringify({
+      ok: false,
+      error: String(err),
+    }),
+    { status: 500 }
+  );
+}
 }
