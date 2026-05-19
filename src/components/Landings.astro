@@ -1,0 +1,174 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+import Container from "./Container.astro";
+
+const services = [
+  {
+    title: "Landing Page",
+    description: "Página enfocada en captar clientes y generar conversiones.",
+    href: "/plans",
+    price: "Desde $889.000",
+
+    features: [
+      "Diseño moderno y profesional",
+      "Página autoadministrable",
+      "Hasta 5 secciones navegables",
+      "Optimizada para móviles",
+      "Formulario de contacto",
+      "Integración con WhatsApp y redes sociales",
+      "Google Maps integrado",
+      "Certificado SSL de seguridad",
+      "1 correo corporativo",
+      "Soporte y capacitación básica",
+    ],
+
+    primaryCta: {
+      label: "Quiero este",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20este%20plan%20de%20Landing%20Page%20para%20mi%20empresa.",
+    },
+
+    secondaryCta: {
+      label: "Cotizar algo más avanzado",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20un%20plan%20de%20Landing%20Page%20avanzado%20para%20mi%20empresa.",
+    },
+  },
+
+  {
+    title: "Sitio Web Empresarial",
+    description:
+      "Sitio profesional con múltiples secciones para empresas y negocios.",
+    href: "/plans",
+    price: "Desde $1.159.000",
+
+    features: [
+      "Sitio web autoadministrable",
+      "Hasta 5 páginas o secciones",
+      "Diseño profesional corporativo",
+      "Optimización para móviles",
+      "Formulario de contacto",
+      "Integración con WhatsApp y redes sociales",
+      "Google Maps integrado",
+      "Optimización SEO básica",
+      "Integración con Google Ads Pixel",
+      "Certificado SSL",
+      "5 correos corporativos",
+      "Hosting y dominio incluidos",
+      "Capacitación y manual de uso",
+    ],
+
+    primaryCta: {
+      label: "Quiero este",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20el%20plan%20de%20Landing%20Page%20para%20mi%20empresa.",
+    },
+
+    secondaryCta: {
+      label: "Necesito algo más avanzado",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20cotizar%20una%20soluci%C3%B3n%20web%20m%C3%A1s%20avanzada%20para%20mi%20empresa.",
+    },
+  },
+
+  {
+    title: "Tienda Online",
+    description:
+      "Ecommerce administrable para vender productos y recibir pagos online.",
+    href: "/plans",
+    price: "",
+
+    features: [
+      "Tienda online autoadministrable",
+      "Carga y gestión de productos",
+      "Categorías y catálogo de productos",
+      "Pasarela de pagos integrada",
+      "Vista y gestión de pedidos",
+      "Diseño adaptable a móviles",
+      "Compra rápida y carrito de compras",
+      "Integración con WhatsApp y redes sociales",
+      "Optimización SEO básica",
+      "Certificado SSL",
+      "Correos corporativos",
+      "Hosting y dominio incluidos por 1 año",
+    ],
+
+    primaryCta: {
+      label: "Quiero esta",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20esta%20tienda%20online%20para%20mi%20negocio.",
+    },
+
+    secondaryCta: {
+      label: "Necesito algo más avanzado",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20una%20tienda%20online%20personalizada%20para%20mi%20negocio.",
+    },
+  },
+
+  {
+    title: "Software a Medida",
+    description:
+      "Sistemas y plataformas personalizadas desarrolladas según tu negocio.",
+    href: "https://wa.me/573180378955?text=Hola,%20quiero%20cotizar%20un%20software%20a%20medida%20para%20mi%20empresa.",
+    price: "",
+
+    features: [
+      "Frontend y backend personalizado",
+      "Automatización de procesos",
+      "Panel administrativo",
+      "APIs e integraciones",
+      "Arquitectura escalable",
+      "Desarrollo según requerimientos",
+    ],
+
+    primaryCta: {
+      label: "Cotizar proyecto",
+      href: "https://wa.me/573180378955?text=Hola,%20quiero%20cotizar%20un%20software%20a%20medida%20para%20mi%20empresa.",
+    },
+  },
+];
+---
+
+<section id="services" class="px-6 py-32 xl:px-12">
+  <div>
+    <SectionTitle
+      title="Desarrollo web"
+      subtitle="Lo que podemos hacer por ti"
+    />
+
+    <div class="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
+      {
+        services.map((service) => (
+          <article class="relative z-10 flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 text-center transition hover:-translate-y-1 hover:border-zinc-600">
+            <h3 class="mb-4 text-2xl font-bold">{service.title}</h3>
+            <p class="mb-4 text-lg font-semibold text-white/90">
+              {service.price}
+            </p>
+            <p class="mb-5 leading-relaxed text-zinc-400">
+              {service.description}
+            </p>
+
+            <ul class="mb-6 flex-1 space-y-1.5 text-sm text-zinc-300">
+              {service.features.map((feature) => (
+                <li> {feature}</li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex flex-col gap-3">
+              <a
+                href={service.primaryCta.href}
+                class="rounded-xl bg-white px-4 py-3 text-center font-medium text-black transition hover:opacity-90"
+              >
+                {service.primaryCta.label}
+              </a>
+
+              {service.secondaryCta && (
+                <a
+                  href={service.secondaryCta.href}
+                  class="text-center text-sm text-zinc-400 transition hover:text-white"
+                >
+                  {service.secondaryCta.label}
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

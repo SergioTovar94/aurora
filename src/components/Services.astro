@@ -7,24 +7,28 @@ const services = [
     title: "Desarrollo Web",
     description:
       "Creamos sitios web y plataformas modernas, rápidas y optimizadas para ofrecer una mejor experiencia a tus usuarios.",
+    href: "/plans",
   },
 
   {
     title: "Análisis de Datos",
     description:
       "Transformamos datos en información útil para ayudarte a tomar decisiones más inteligentes y entender mejor tu negocio.",
+    href: "/plans",
   },
 
   {
     title: "Inteligencia Artificial",
     description:
       "Automatizamos procesos y desarrollamos soluciones con IA para reducir trabajo manual y mejorar la eficiencia.",
+    href: "/plans",
   },
 
   {
     title: "Aplicaciones Móviles y de Escritorio",
     description:
       "Desarrollamos aplicaciones multiplataforma adaptadas a las necesidades de tu empresa y tus usuarios.",
+    href: "/plans",
   },
 ];
 ---
@@ -36,11 +40,14 @@ const services = [
     <div class="grid gap-6 md:grid-cols-2">
       {
         services.map((service) => (
-          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 transition hover:border-zinc-600">
+          <a
+            href={service.href}
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-8 transition hover:border-zinc-600 hover:-translate-y-1 block cursor-pointer"
+          >
             <h3 class="mb-4 text-2xl font-bold">{service.title}</h3>
 
             <p class="leading-relaxed text-zinc-400">{service.description}</p>
-          </article>
+          </a>
         ))
       }
     </div>
